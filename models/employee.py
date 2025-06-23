@@ -3,8 +3,9 @@ from services.geolocation import get_coordinates
 class Employee:
     _registry: list["Employee"] = []
 
-    def _init_(self, first, last, city, pharmacy):
-        self.first_name, self.last_name = first.title(), last.title()
+    def __init__(self, first: str, last: str, city: str, pharmacy: str):
+        self.first_name = first.title()
+        self.last_name = last.title()
         self.city = city.title()
         self.assigned_pharmacy = pharmacy
         self.coordinates = get_coordinates(self.city)
@@ -23,6 +24,8 @@ class Employee:
         return f"{self.first_name} {self.last_name}"
 
     def update(self, first, last, city, pharmacy):
-        self.first_name, self.last_name = first.title(), last.title()
-        self.city, self.assigned_pharmacy = city.title(), pharmacy
+        self.first_name = first.title()
+        self.last_name = last.title()
+        self.city = city.title()
+        self.assigned_pharmacy = pharmacy
         self.coordinates = get_coordinates(self.city)

@@ -2,11 +2,10 @@ import tkinter as tk
 from tkinter import ttk
 import tkintermapview
 
-from tabs.pharmacies_tab     import pharmacies_tab
-from tabs.customers_tab    import customers_tab
-from tabs.emploies_tab  import emploies_tab
-from tabs.overview_tab   import overview_tab
-
+from tabs.pharmacies_tab import PharmacyTab
+from tabs.customers_tab import CustomersTab
+from tabs.emploies_tab import EmployeeTab
+from tabs.overview_tab import OverviewTab
 
 def main() -> None:
     root = tk.Tk()
@@ -23,19 +22,18 @@ def main() -> None:
     notebook.pack(fill="both", expand=True)
 
     tab_over = OverviewTab(notebook, map_widget)
-    tab_wash = PharmacyTab(notebook, map_widget)
-    tab_cli  = CustomersTab(notebook,  map_widget, tab_over)
+    tab_phar = PharmacyTab(notebook, map_widget)
+    tab_cust = CustomersTab(notebook, map_widget, tab_over)
     tab_emp  = EmployeeTab(notebook, map_widget, tab_over)
 
-    tab_wash.dependents = [tab_cli, tab_emp, tab_over]
+    tab_phar.dependents = [tab_cust, tab_emp, tab_over]
 
-    notebook.add(tab_wash, text="Apteki")
-    notebook.add(tab_cli,  text="Klienci")
-    notebook.add(tab_emp,  text="Pracownicy")
+    notebook.add(tab_phar, text="Apteki")
+    notebook.add(tab_cust, text="Klienci")
+    notebook.add(tab_emp, text="Pracownicy")
     notebook.add(tab_over, text="Przegląd")
 
     root.mainloop()
 
-
-if _name_ == "_main_":
+if __name__ == "__main__":
     main()

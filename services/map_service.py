@@ -1,5 +1,5 @@
 class MapService:
-    def _init_(self, widget):
+    def __init__(self, widget):
         self.widget = widget
         self.markers = []
 
